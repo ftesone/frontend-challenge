@@ -4,10 +4,13 @@ import { FocusableInput } from "./components/FocusableInput";
 import { ImageGallery } from "./components/ImageGallery";
 import { PlayerStatus } from "./components/PlayerStatus";
 import { TeamsList } from "./components/TeamsList";
+import { useState } from "react";
 
 import './App.css';
 
 export default function App() {
+    const [focusable, setFocusable] = useState(false);
+
   return (
     <div className="App">
       {/* Render here each component from the "components" directory */}
@@ -15,7 +18,11 @@ export default function App() {
       <Message />
       <br />
       <h3>'FocusableInput' test</h3>
-      <FocusableInput />
+        <label htmlFor="focusable">
+            <input type="checkbox" id="focusable" checked={focusable} onChange={event => setFocusable(event.target.checked)} />
+            Focus input
+        </label>
+      <FocusableInput focusable={focusable} />
       <br />
       <h3>'ImageGallery' test</h3>
       <ImageGallery />
