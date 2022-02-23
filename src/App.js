@@ -6,6 +6,7 @@ import { PlayerStatus } from "./components/PlayerStatus";
 import { TeamsList } from "./components/TeamsList";
 import { Grocery } from "./components/Grocery";
 import { ListItemsForNavigation } from "./components/ListItemsForNavigation";
+import { Rating } from "./components/Rating";
 import { useState } from "react";
 
 import './App.css';
@@ -47,6 +48,9 @@ export default function App() {
       <br />
       <h3>'ListItemsForNavigation' test</h3>
       <ListItemsForNavigation items={['Michael Jordan', 'LeBron James', 'Shaquille O\'neal', 'Charles Barkley', 'Manu Ginobilli']} />
+      <br />
+      <h3>'Rating' test</h3>
+      <Rating />
     </div>
   );
 }

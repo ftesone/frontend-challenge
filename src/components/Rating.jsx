@@ -24,6 +24,20 @@
  * </div>
  */
 
+import { useEffect, useState } from "react";
+
+import "./Rating.css";
+
 export function Rating() {
-	return null;
+	const [ rating, setRating ] = useState(0);
+
+	useEffect(() => {
+		[...document.getElementById('rating').children].forEach((child, key) => child.className = key <= rating ? 'active' : '');
+	}, [rating]);
+
+	return (
+		<div id="rating">
+			{[...Array(5).keys()].map(key => <span key={key} onClick={() => setRating(key)}> * </span>)}
+		</div>
+	);
 }
