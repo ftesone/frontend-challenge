@@ -4,6 +4,7 @@ import { FocusableInput } from "./components/FocusableInput";
 import { ImageGallery } from "./components/ImageGallery";
 import { PlayerStatus } from "./components/PlayerStatus";
 import { TeamsList } from "./components/TeamsList";
+import { Grocery } from "./components/Grocery";
 import { useState } from "react";
 
 import './App.css';
@@ -36,6 +37,12 @@ export default function App() {
       <br />
       <h3>'TeamsList' test</h3>
       <TeamsList />
+      <br />
+      <h3>'Grocery' test</h3>
+      <Grocery products={[
+          {name: 'Oranges', votes: 0},
+          {name: 'Bananas', votes: 2},
+      ]} />
     </div>
   );
 }
