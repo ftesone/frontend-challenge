@@ -5,6 +5,7 @@ import { ImageGallery } from "./components/ImageGallery";
 import { PlayerStatus } from "./components/PlayerStatus";
 import { TeamsList } from "./components/TeamsList";
 import { Grocery } from "./components/Grocery";
+import { ListItemsForNavigation } from "./components/ListItemsForNavigation";
 import { useState } from "react";
 
 import './App.css';
@@ -43,6 +44,9 @@ export default function App() {
           {name: 'Oranges', votes: 0},
           {name: 'Bananas', votes: 2},
       ]} />
+      <br />
+      <h3>'ListItemsForNavigation' test</h3>
+      <ListItemsForNavigation items={['Michael Jordan', 'LeBron James', 'Shaquille O\'neal', 'Charles Barkley', 'Manu Ginobilli']} />
     </div>
   );
 }

@@ -12,37 +12,37 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// Simulating a list of items to render.
-// This can be passed through props as well. The constant is declared here for convenience
-const itemsList = Array(10).fill({
-	/** Add the properties you consider, there are no specific requirements related to what you have to render. Be creative :) */
-});
+import "./ListItemsForNavigation.css";
 
-export function ListItemsForNavigation(props) {
+export function ListItemsForNavigation({items}) {
 	const [
 		selectedIndex,
 		setSelectedIndex,
-	] = useState(/** Initialize the state as you need */);
+	] = useState(0);
 	const activeItemRef = useRef();
 
 	useEffect(
 		function () {
-			// Focus the item using this effect
+			activeItemRef.current.focus();
 		},
 		[
-			/* Use accordingly the dependencies */
+			selectedIndex
 		]
 	);
 
 	function handleKeyDown(event) {
-		// Add the proper logic to calculate the index that correspond to the item that should be focused.
+		event.preventDefault(); // to prevent page scroll
+
+		if (selectedIndex > 0 && (37 === event.keyCode || 40 === event.keyCode)) {
+			setSelectedIndex(prevIndex => prevIndex - 1);
+		} else if (selectedIndex < items.length - 1 && (38 === event.keyCode || 39 === event.keyCode)) {
+			setSelectedIndex(prevIndex => prevIndex + 1);
+		}
 	}
 
 	return (
 		<ul onKeyDown={handleKeyDown}>
-			{/** Render itemsList as you wish, probably you want to render <li></li> with the proper attributes */}
-			{/** If you have issues focusing an element, it is probably because the element is not focusable originally. Try with tabIndex={0} */}
-			{/** Do not forget to pass the reference to the selected item */}
+			{items && items.map((item, index) => <li key={item} ref={index === selectedIndex ? activeItemRef : null} tabIndex={0}>{item}</li>)}
 		</ul>
 	);
 }
