@@ -65,33 +65,39 @@ const TEAMS = [
 	},
 ];
 
+function totalScore(team) {
+	return team.games.reduce((partialScore, game) => partialScore + game.score, 0);
+}
+
 export function TeamsList() {
 	const [teams, setTeams] = useState(TEAMS);
 
 	// Order teams by score (highest to lowest)
 	function orderTeamByScoreHighestToLowest() {
-		// Write your code here
+		setTeams(prevTeams => [...prevTeams].sort((team1, team2) => totalScore(team1) > totalScore(team2) ? -1 : 1))
 	}
 
 	// Order teams by score (lowest to highest)
 	function orderTeamByScoreLowestToHighest() {
-		// Write your code here
+		setTeams(prevTeams => [...prevTeams].sort((team1, team2) => totalScore(team1) < totalScore(team2) ? -1 : 1))
 	}
 
 	// Filtering teams that with at least 3 players
 	function teamsWithMoreThanThreePlayers() {
-		// Write your code here
+		setTeams(prevTeams => prevTeams.filter(team => team.players.length >= 3));
 	}
 
 	return (
 		<div>
 			<button onClick={() => setTeams(TEAMS)}>Initial list</button>
 
-			<button>Highest to Lowest</button>
-			<button>Lowest to Highest</button>
-			<button>Teams with at least 3 players</button>
+			<button onClick={orderTeamByScoreHighestToLowest}>Highest to Lowest</button>
+			<button onClick={orderTeamByScoreLowestToHighest}>Lowest to Highest</button>
+			<button onClick={teamsWithMoreThanThreePlayers}>Teams with at least 3 players</button>
 
-			<ul className="teams">{/** Render the list of teams */}</ul>
+			<ul className="teams">
+				{teams && teams.map(team => <li key={team.name}>{team.name}</li>)}
+			</ul>
 		</div>
 	);
 }
